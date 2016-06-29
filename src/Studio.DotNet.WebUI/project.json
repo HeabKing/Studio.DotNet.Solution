@@ -20,7 +20,14 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Studio.DotNet.IBll": "1.0.0-*",
+    "Hesinx.Utility": "1.0.0-*",
+    "Studio.DotNet.Bll": "1.0.0-*",
+    "Studio.DotNet.Common": "1.0.0-*",
+    "Studio.DotNet.Dal": "1.0.0-*",
+    "Studio.DotNet.Domain": "1.0.0-*",
+    "Studio.DotNet.IDal": "1.0.0-*"
   },
 
   "tools": {

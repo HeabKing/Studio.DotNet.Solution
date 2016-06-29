@@ -32,6 +32,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Studio.DotNet.Bll", "Studio
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Studio.DotNet.IBll", "Studio.DotNet.IBll\Studio.DotNet.IBll.xproj", "{74031057-32BE-425B-855C-A1F84A67C176}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Hesinx.Utility", "Hesinx.Utility\src\Hesinx.Utility\Hesinx.Utility.xproj", "{4F2F8B24-7DF0-44B0-AA14-1C57C9824352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{74031057-32BE-425B-855C-A1F84A67C176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74031057-32BE-425B-855C-A1F84A67C176}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74031057-32BE-425B-855C-A1F84A67C176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F2F8B24-7DF0-44B0-AA14-1C57C9824352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F2F8B24-7DF0-44B0-AA14-1C57C9824352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F2F8B24-7DF0-44B0-AA14-1C57C9824352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F2F8B24-7DF0-44B0-AA14-1C57C9824352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,5 +88,6 @@ Global
 		{682959B9-6E31-44F7-BB21-D5B76BD14982} = {0AA60074-EB23-4BCA-9395-B5680EA70312}
 		{020F6D64-C4CE-41A9-BF08-854FEB2451E8} = {64B3C517-2250-47BB-B2F7-176D3AB55B5C}
 		{74031057-32BE-425B-855C-A1F84A67C176} = {64B3C517-2250-47BB-B2F7-176D3AB55B5C}
+		{4F2F8B24-7DF0-44B0-AA14-1C57C9824352} = {6F6382AB-CB1C-4031-ADD1-366361C4FBF0}
 	EndGlobalSection
 EndGlobal

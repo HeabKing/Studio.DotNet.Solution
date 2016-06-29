@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Studio.DotNet.IDal
+namespace Studio.DotNet.IBll
 {
-    public class Class1
+    public interface IUserBll : IBaseBll<Domain.TbUserDto>
     {
-        public Class1()
-        {
-        }
     }
 }
