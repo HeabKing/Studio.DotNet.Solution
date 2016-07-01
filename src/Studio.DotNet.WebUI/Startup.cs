@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +39,11 @@ namespace Studio.DotNet.WebUI
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            // 添加中间件服务
+            services.AddSingleton<IDbConnection>(new SqlConnection("Data Source=qds150599512.my3w.com;Initial Catalog=qds150599512_db;User Id=qds150599512;Password=he394899990;"));
+            services.AddTransient<IDal.ITbUserDal, Dal.TbUserDal>();    // TODO 构造函数自动注入可以吗?
+            services.AddTransient<IBll.IUserBll, Bll.UserBll>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

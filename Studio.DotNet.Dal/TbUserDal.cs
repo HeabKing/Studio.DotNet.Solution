@@ -4,19 +4,18 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Studio.DotNet.Domain;
 
 namespace Studio.DotNet.Dal
 {
-    public class BaseDal : IDal.IBaseDal<Domain.TbUserDto>
+    public class TbUserDal : IDal.ITbUserDal, IDal.IBaseDal<Domain.TbUserDto>
     {
         private readonly IDbConnection _db;
-        public BaseDal(IDbConnection db)
+        public TbUserDal(IDbConnection db)
         {
             _db = db;
         }
 
-        public Task<int> InsertAsync(TbUserDto model)
+        public Task<int> InsertAsync(Domain.TbUserDto model)
         {
             return _db.ExecuteAsync(@"
                 INSERT INTO [dbo].[TbUser]
@@ -24,7 +23,7 @@ namespace Studio.DotNet.Dal
                            ,[PwdHash])
                      VALUES
                            (@UserName
-                           ,@PwdHash", model);
+                           ,@PwdHash)", model);
         }
 
         public Task<int> DeleteAsync(int id)
@@ -32,12 +31,12 @@ namespace Studio.DotNet.Dal
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateAsync(TbUserDto model)
+        public Task<int> UpdateAsync(Domain.TbUserDto model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TbUserDto> GetAsync(int id)
+        public Task<Domain.TbUserDto> GetAsync(int id)
         {
             throw new NotImplementedException();
         }

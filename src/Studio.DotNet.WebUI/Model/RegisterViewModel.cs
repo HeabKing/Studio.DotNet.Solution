@@ -11,7 +11,7 @@ namespace Studio.DotNet.WebUI.Model
     public class RegisterViewModel
     {
         public string UserName { get; set; }
-        public string Pwd { get; set; }
+        public string  Pwd { get; set; }
         public string ConfirmPwd { get; set; }
         public string VerificationCode { get; set; }
     }

@@ -107,27 +107,27 @@
                     </article>
 
 
-                    <form id="contact-form" class="row" action="/User/Register" method="post">
+                    <form id="contact-form" class="row" action="/User/RegisterAsync" method="post">
 
                         <div class="span2">
-                            <label for="name">用户名 <span>*</span> </label>
+                            <label for="UserName">用户名 <span>*</span> </label>
                         </div>
                         <div class="span6">
-                            <input type="text" name="UserName" id="name" class="required input-xlarge" value="" title="* Please provide your name">
-                        </div>
-
-                        <div class="span2">
-                            <label for="email">密码 <span>*</span></label>
-                        </div>
-                        <div class="span6">
-                            <input type="text" name="Pwd" id="email" class="email required input-xlarge" value="" title="* Please provide a valid email address">
+                            <input type="text" name="UserName" id="UserName" value="" class="input-xlarge">
                         </div>
 
                         <div class="span2">
-                            <label for="email">确认密码 <span>*</span></label>
+                            <label for="Pwd">密码 <span>*</span></label>
                         </div>
                         <div class="span6">
-                            <input type="text" name="ConfirmPwd" id="email" class="email required input-xlarge" value="" title="* Please provide a valid email address">
+                            <input type="password" name="Pwd" id="Pwd" value="" class="input-xlarge">
+                        </div>
+
+                        <div class="span2">
+                            <label for="ConfirmPwd">确认密码 <span>*</span></label>
+                        </div>
+                        <div class="span6">
+                            <input type="password" name="ConfirmPwd" id="ConfirmPwd" value="" class="input-xlarge">
                         </div>
 
                         <div class="span6 offset2 bm30">
