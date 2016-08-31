@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-
+// ReSharper disable ClassNeverInstantiated.Global
 namespace Studio.DotNet.Dal
 {
 	/// <summary>
@@ -38,8 +38,8 @@ namespace Studio.DotNet.Dal
 	        return _db.QueryFirstAsync<Domain.TblUserDto>(@"
 				SELECT *
 				FROM dbo.TblUser
-				WHERE Id = 1
-				", id);
+				WHERE Id = @id
+				", new {id});
         }
     }
 }
