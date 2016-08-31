@@ -18,11 +18,9 @@ namespace Studio.DotNet.Bll
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<bool> AddAsync(Domain.TbUserDto model)
+        public Task<bool> AddAsync(Domain.TblUserDto model)
         {
-            model.PwdHash = Hesinx.Utility.SecurityHelper.Md5(model.PwdHash);  // MD5加密
-            var num = await _dal.InsertAsync(model);
-            return num == 1;
+           return null;
         }
 
         public Task<bool> RemoveAsync(int id)
@@ -30,14 +28,14 @@ namespace Studio.DotNet.Bll
             throw new NotImplementedException();
         }
 
-        public Task<bool> EditAsync(Domain.TbUserDto model)
+        public Task<bool> EditAsync(Domain.TblUserDto model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Domain.TbUserDto> GetAsync(int id)
+        public Task<Domain.TblUserDto> GetAsync(int id)
         {
-            throw new NotImplementedException();
+	        return _dal.GetAsync(id);
         }
     }
 }

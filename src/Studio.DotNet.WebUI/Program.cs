@@ -15,7 +15,7 @@ namespace Studio.DotNet.WebUI
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
+                .UseStartup<CompositionRoot.Startup>()
                 .Build();
 
             host.Run();

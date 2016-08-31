@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Studio.DotNet.IDal
 {
-    public interface ITbUserDal : IBaseDal<Domain.TbUserDto>
+    public interface ITbUserDal : IBaseDal<Domain.TblUserDto>
     {
     }
 }

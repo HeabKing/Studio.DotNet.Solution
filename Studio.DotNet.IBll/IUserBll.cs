@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Studio.DotNet.IBll
 {
-    public interface IUserBll : IBaseBll<Domain.TbUserDto>
+    public interface IUserBll : IBaseBll<Domain.TblUserDto>
     {
     }
 }

@@ -21,22 +21,9 @@ namespace Studio.DotNet.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync(Model.RegisterViewModel model)
+        public Task<IActionResult> RegisterAsync(Model.RegisterViewModel model)
         {
-            bool isOk;
-            if (model.Pwd != model.ConfirmPwd)
-            {
-                isOk = false;
-            }
-            else
-            {
-                isOk = await _bll.AddAsync(new Domain.TbUserDto
-                {
-                    PwdHash = model.Pwd,
-                    UserName = model.UserName
-                });
-            }
-            return Content(isOk.ToString());
+			return null;
 
         }
     }
