@@ -47,6 +47,17 @@ namespace Studio.DotNet.API
 			loggerFactory.AddDebug();
 
 			app.UseApplicationInsightsRequestTelemetry();
+			
+			// 2016-09-01 添加异常处理程序
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseBrowserLink();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+			}
 
 			app.UseApplicationInsightsExceptionTelemetry();
 

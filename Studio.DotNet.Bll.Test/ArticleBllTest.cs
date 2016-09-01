@@ -23,7 +23,7 @@ namespace Studio.DotNet.Bll.Test
 		    int id = 1;
 		    var article = _articleBll.GetAsync(id).Result;
 		    Assert.True(id == article.Id);
-		    Assert.NotNull(article.Content);
+		    Assert.NotNull(article.ContentUrl);
 	    }
     }
 }

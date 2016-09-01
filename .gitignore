@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Hesinx.Utility/
+/Studio.DotNet.API/wwwroot/article/

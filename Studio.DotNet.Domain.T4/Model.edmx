@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbDotNetStudioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="ContentUrl" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="LikeCount" Type="int" Nullable="false" />
+          <Property Name="DislikeCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblArticleTblTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUserTblArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TblArticleTblTag_TblArticle">
+          <End Role="TblArticle" Type="Self.TblArticle" Multiplicity="1" />
+          <End Role="TblArticleTblTag" Type="Self.TblArticleTblTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblArticle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblArticleTblTag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblArticleTblTag_TblTag">
+          <End Role="TblTag" Type="Self.TblTag" Multiplicity="1" />
+          <End Role="TblArticleTblTag" Type="Self.TblArticleTblTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblArticleTblTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUserTblArticle_TblArticle">
+          <End Role="TblArticle" Type="Self.TblArticle" Multiplicity="1" />
+          <End Role="TblUserTblArticle" Type="Self.TblUserTblArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblArticle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUserTblArticle">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUserTblArticle_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="TblUserTblArticle" Type="Self.TblUserTblArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUserTblArticle">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbDotNetStudioModelStoreContainer">
+          <EntitySet Name="TblArticle" EntityType="Self.TblArticle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblArticleTblTag" EntityType="Self.TblArticleTblTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTag" EntityType="Self.TblTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUser" EntityType="Self.TblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUserTblArticle" EntityType="Self.TblUserTblArticle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblArticleTblTag_TblArticle" Association="Self.FK_TblArticleTblTag_TblArticle">
+            <End Role="TblArticle" EntitySet="TblArticle" />
+            <End Role="TblArticleTblTag" EntitySet="TblArticleTblTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblArticleTblTag_TblTag" Association="Self.FK_TblArticleTblTag_TblTag">
+            <End Role="TblTag" EntitySet="TblTag" />
+            <End Role="TblArticleTblTag" EntitySet="TblArticleTblTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUserTblArticle_TblArticle" Association="Self.FK_TblUserTblArticle_TblArticle">
+            <End Role="TblArticle" EntitySet="TblArticle" />
+            <End Role="TblUserTblArticle" EntitySet="TblUserTblArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUserTblArticle_TblUser" Association="Self.FK_TblUserTblArticle_TblUser">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="TblUserTblArticle" EntitySet="TblUserTblArticle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbDotNetStudioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ContentUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblArticleTblTag" Relationship="Self.FK_TblArticleTblTag_TblArticle" FromRole="TblArticle" ToRole="TblArticleTblTag" />
+          <NavigationProperty Name="TblUserTblArticle" Relationship="Self.FK_TblUserTblArticle_TblArticle" FromRole="TblArticle" ToRole="TblUserTblArticle" />
+          <Property Name="LikeCount" Type="Int32" Nullable="false" />
+          <Property Name="DislikeCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblArticleTblTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblArticle" Relationship="Self.FK_TblArticleTblTag_TblArticle" FromRole="TblArticleTblTag" ToRole="TblArticle" />
+          <NavigationProperty Name="TblTag" Relationship="Self.FK_TblArticleTblTag_TblTag" FromRole="TblArticleTblTag" ToRole="TblTag" />
+        </EntityType>
+        <EntityType Name="TblTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblArticleTblTag" Relationship="Self.FK_TblArticleTblTag_TblTag" FromRole="TblTag" ToRole="TblArticleTblTag" />
+        </EntityType>
+        <EntityType Name="TblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUserTblArticle" Relationship="Self.FK_TblUserTblArticle_TblUser" FromRole="TblUser" ToRole="TblUserTblArticle" />
+        </EntityType>
+        <EntityType Name="TblUserTblArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblArticle" Relationship="Self.FK_TblUserTblArticle_TblArticle" FromRole="TblUserTblArticle" ToRole="TblArticle" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUserTblArticle_TblUser" FromRole="TblUserTblArticle" ToRole="TblUser" />
+        </EntityType>
+        <Association Name="FK_TblArticleTblTag_TblArticle">
+          <End Role="TblArticle" Type="Self.TblArticle" Multiplicity="1" />
+          <End Role="TblArticleTblTag" Type="Self.TblArticleTblTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblArticle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblArticleTblTag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUserTblArticle_TblArticle">
+          <End Role="TblArticle" Type="Self.TblArticle" Multiplicity="1" />
+          <End Role="TblUserTblArticle" Type="Self.TblUserTblArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblArticle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUserTblArticle">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblArticleTblTag_TblTag">
+          <End Role="TblTag" Type="Self.TblTag" Multiplicity="1" />
+          <End Role="TblArticleTblTag" Type="Self.TblArticleTblTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblArticleTblTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUserTblArticle_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="TblUserTblArticle" Type="Self.TblUserTblArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUserTblArticle">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbDotNetStudioEntitiesInConfig" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblArticle" EntityType="Self.TblArticle" />
+          <EntitySet Name="TblArticleTblTag" EntityType="Self.TblArticleTblTag" />
+          <EntitySet Name="TblTag" EntityType="Self.TblTag" />
+          <EntitySet Name="TblUser" EntityType="Self.TblUser" />
+          <EntitySet Name="TblUserTblArticle" EntityType="Self.TblUserTblArticle" />
+          <AssociationSet Name="FK_TblArticleTblTag_TblArticle" Association="Self.FK_TblArticleTblTag_TblArticle">
+            <End Role="TblArticle" EntitySet="TblArticle" />
+            <End Role="TblArticleTblTag" EntitySet="TblArticleTblTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUserTblArticle_TblArticle" Association="Self.FK_TblUserTblArticle_TblArticle">
+            <End Role="TblArticle" EntitySet="TblArticle" />
+            <End Role="TblUserTblArticle" EntitySet="TblUserTblArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblArticleTblTag_TblTag" Association="Self.FK_TblArticleTblTag_TblTag">
+            <End Role="TblTag" EntitySet="TblTag" />
+            <End Role="TblArticleTblTag" EntitySet="TblArticleTblTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUserTblArticle_TblUser" Association="Self.FK_TblUserTblArticle_TblUser">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="TblUserTblArticle" EntitySet="TblUserTblArticle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbDotNetStudioModelStoreContainer" CdmEntityContainer="DbDotNetStudioEntitiesInConfig">
+          <EntitySetMapping Name="TblArticle">
+            <EntityTypeMapping TypeName="DbDotNetStudioModel.TblArticle">
+              <MappingFragment StoreEntitySet="TblArticle">
+                <ScalarProperty Name="DislikeCount" ColumnName="DislikeCount" />
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContentUrl" ColumnName="ContentUrl" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblArticleTblTag">
+            <EntityTypeMapping TypeName="DbDotNetStudioModel.TblArticleTblTag">
+              <MappingFragment StoreEntitySet="TblArticleTblTag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblTag">
+            <EntityTypeMapping TypeName="DbDotNetStudioModel.TblTag">
+              <MappingFragment StoreEntitySet="TblTag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUser">
+            <EntityTypeMapping TypeName="DbDotNetStudioModel.TblUser">
+              <MappingFragment StoreEntitySet="TblUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUserTblArticle">
+            <EntityTypeMapping TypeName="DbDotNetStudioModel.TblUserTblArticle">
+              <MappingFragment StoreEntitySet="TblUserTblArticle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

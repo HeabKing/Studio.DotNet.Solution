@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="97c0072e8fe84695bd9ce1d1e739e36a" Name="Diagram1">
+        <EntityTypeShape EntityType="DbDotNetStudioModel.TblArticle" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbDotNetStudioModel.TblArticleTblTag" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbDotNetStudioModel.TblTag" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbDotNetStudioModel.TblUser" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbDotNetStudioModel.TblUserTblArticle" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="DbDotNetStudioModel.FK_TblArticleTblTag_TblArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="DbDotNetStudioModel.FK_TblUserTblArticle_TblArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="DbDotNetStudioModel.FK_TblArticleTblTag_TblTag" ManuallyRouted="false" />
+        <AssociationConnector Association="DbDotNetStudioModel.FK_TblUserTblArticle_TblUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
