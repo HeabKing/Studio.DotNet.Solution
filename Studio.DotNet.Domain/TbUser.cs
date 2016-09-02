@@ -6,7 +6,7 @@ namespace Studio.DotNet.Domain
 	/// 用户领域模型
 	/// </summary>
 	/// <remarks>Sinx 2016-08-31</remarks>
-	public class TblUserDto
+	public class TblUser
     {
         public int Id { get; set; }
 		public string Name { get; set; }

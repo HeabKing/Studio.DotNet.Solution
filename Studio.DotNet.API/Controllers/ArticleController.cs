@@ -35,9 +35,15 @@ namespace Studio.DotNet.API.Controllers
 			return Json(article);
 		}
 
+		/// <summary>
+		/// 添加文章
+		/// </summary>
+		/// <param name="article"></param>
+		/// <returns></returns>
 		[HttpPost]
-		public async Task<IActionResult> Post(Domain.TblArticleDto article)
+		public async Task<IActionResult> Post(Domain.TblArticle article)
 		{
+			var result = _articleBll.AddAsync(article);
 			return null;
 		}
 
@@ -46,7 +52,7 @@ namespace Studio.DotNet.API.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpPost]
-		[Route("contentUrl")]
+		[Route("ContentUrl")]
 		public async Task<IActionResult> PostContentUrl()
 		{
 			// 转换 word 文件为html, 生成路径

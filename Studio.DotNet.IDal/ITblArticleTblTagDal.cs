@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Studio.DotNet.IBll
+namespace Studio.DotNet.IDal
 {
-    public interface IUserBll : IBaseBll<Domain.TblUser>
+	public interface ITblArticleTblTagDal:IBaseDal<Domain.TblArticleTblTag>
     {
     }
 }

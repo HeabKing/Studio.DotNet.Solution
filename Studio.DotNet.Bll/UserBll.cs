@@ -18,7 +18,7 @@ namespace Studio.DotNet.Bll
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public Task<bool> AddAsync(Domain.TblUserDto model)
+        public Task<int> AddAsync(Domain.TblUser model)
         {
            return null;
         }
@@ -28,14 +28,14 @@ namespace Studio.DotNet.Bll
             throw new NotImplementedException();
         }
 
-        public Task<bool> EditAsync(Domain.TblUserDto model)
+        public Task<bool> EditAsync(Domain.TblUser model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Domain.TblUserDto> GetAsync(int id)
+        public Task<Domain.TblUser> GetAsync(int id)
         {
-	        return _dal.GetAsync(id);
+	        return _dal.GetOrDefaultAsync(id);
         }
     }
 }

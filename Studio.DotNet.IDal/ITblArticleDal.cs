@@ -9,5 +9,5 @@ namespace Studio.DotNet.IDal
 	/// 文章数据访问接口
 	/// </summary>
 	/// <remarks>Sinx 2016-08-31</remarks>
-    public interface ITblArticleDal : IBaseDal<Domain.TblArticleDto>{}
+    public interface ITblArticleDal : IBaseDal<Domain.TblArticle>{}
 }
