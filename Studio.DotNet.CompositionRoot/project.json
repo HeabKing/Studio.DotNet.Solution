@@ -1,30 +1,26 @@
 ﻿{
   "version": "1.0.0-*",
 
-	"dependencies": {
-		"NETStandard.Library": "1.6.0",
-		"Studio.DotNet.Bll": "1.0.0-*",
-		"Studio.DotNet.Dal": "1.0.0-*",
-		"Studio.DotNet.IBll": "1.0.0-*",
-		"Studio.DotNet.IDal": "1.0.0-*",
-		//"Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
-		"Microsoft.AspNetCore.Diagnostics": "1.0.0",
-		"Microsoft.AspNetCore.Mvc": "1.0.0",
-		"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-		"Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-		"Microsoft.AspNetCore.StaticFiles": "1.0.0",
-		"Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
-		"Microsoft.Extensions.Configuration.Json": "1.0.0",
-		"Microsoft.Extensions.Logging": "1.0.0",
-		"Microsoft.Extensions.Logging.Console": "1.0.0",
-		"Microsoft.Extensions.Logging.Debug": "1.0.0",
-		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
-	},
+  "dependencies": {
+    "Studio.DotNet.Bll": "1.0.0-*", //"Studio.DotNet.IBll": "1.0.0-*" //"Studio.DotNet.IDal": "1.0.0-*"//"Studio.DotNet.Domain": "1.0.0-*"
+    "Studio.DotNet.Dal": "1.0.0-*", //"Studio.DotNet.IDal": "1.0.0-*" //"Studio.DotNet.Domain": "1.0.0-*"
+    //"Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+  },
 
 	"frameworks": {
-		"netstandard1.6": {
-			"imports": "dnxcore50"
-		}
+    "net451": {
+    }
 	}
 }

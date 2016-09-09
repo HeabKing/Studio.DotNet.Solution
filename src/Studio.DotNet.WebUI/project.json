@@ -1,9 +1,5 @@
 ﻿{
 	"dependencies": {
-		"Microsoft.NETCore.App": {
-			"version": "1.0.0",
-			"type": "platform"
-		},
 		"Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
 		"Microsoft.AspNetCore.Mvc": "1.0.0",
 		"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
@@ -33,12 +29,7 @@
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
-      ]
-    }
+   "net461": {} 
   },
 
   "buildOptions": {

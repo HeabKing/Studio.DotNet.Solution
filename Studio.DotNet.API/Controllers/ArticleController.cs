@@ -41,10 +41,10 @@ namespace Studio.DotNet.API.Controllers
 		/// <param name="article"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public async Task<IActionResult> Post(Domain.TblArticle article)
+		public async Task<IActionResult> Post(Model.ArticleViewModel article)
 		{
-			var result = _articleBll.AddAsync(article);
-			return null;
+			var result = await _articleBll.AddAsync(article.Article, article.Tags, article.UserId);
+			return Json(article);
 		}
 
 		/// <summary>
