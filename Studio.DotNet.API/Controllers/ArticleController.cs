@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -58,26 +59,26 @@ namespace Studio.DotNet.API.Controllers
 			// 转换 word 文件为html, 生成路径
 			var webrootPath = _env.WebRootPath;
 			var file = Request.Form.Files["file"];
-			var fileExt = System.IO.Path.GetExtension(file.FileName);
+			var fileExt = Path.GetExtension(file.FileName);
 			var ticks = DateTime.Now.Ticks;
-			var savePath = $@"{webrootPath}\article\word\{ticks}{fileExt}";
 			var saveHtmlPath = $@"{webrootPath}\article\html\{ticks}\{ticks}.html";
 			var saveHtmlPath2 = $@"/article/html/{ticks}/{ticks}.html";
-			using (var stream = System.IO.File.OpenWrite(savePath))
-			{
-				await file.CopyToAsync(stream);
-			}
-			var des = $@"{savePath};{saveHtmlPath}";
-			var p = Process.Start(@"C:\Users\HeabK\Sinx\aspose", $"\"{des}\"");
-			// 等待退出, 最多等一分钟
-			p.WaitForExit(Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
-			var contentUrl = string.Empty;
-			// 如果CMD成功执行完成, 返回的是0, 如果出现异常等, 返回的是非零
-			if (p.ExitCode == 0)
-			{
-				contentUrl = saveHtmlPath2;
-			}
-			return Json(new {status = "ok", data = contentUrl, msg = "html文件已经转换成功"});
+            var savePath = $@"{webrootPath}\article\word\{ticks}{fileExt}";
+            Directory.CreateDirectory($@"{webrootPath}\article\word\");
+            try
+		    {
+		        using (var fs = System.IO.File.Open(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+		        {
+		            await file.CopyToAsync(fs);
+		            await fs.SaveAsync(FileStreamEx.FileType.Word, saveHtmlPath);
+		        }
+		    }
+		    catch (Exception)
+		    {
+		        System.IO.File.Delete(savePath);
+		        throw;
+		    }
+		    return Json(new {status = "ok", data = saveHtmlPath2, msg = "html文件已经转换成功"});
 		}
 
 		// PUT api/values/5
