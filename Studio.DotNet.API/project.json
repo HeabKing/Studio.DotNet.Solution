@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0", //app.UseDeveloperExceptionPage();app.UseExceptionHandler("/Home/Error");
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0", // "app.UseBrowserLink();": null,
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
@@ -12,8 +13,9 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    //"Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
     "System.Data.Common": "4.1.0",
-    "Studio.DotNet.CompositionRoot": "1.0.0-*"
+    "Studio.DotNet.CompositionRoot": "1.0.0-*" //"Microsoft.AspNetCore.Mvc": "1.0.0",
   },
 
   "tools": {
