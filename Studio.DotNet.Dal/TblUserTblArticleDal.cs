@@ -1,16 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Studio.DotNet.Domain;
-
+using Dapper;
 namespace Studio.DotNet.Dal
 {
+	// ReSharper disable once ClassNeverInstantiated.Global
     public class TblUserTblArticleDal:IDal.ITblUserTblArticleDal
     {
+	    private readonly System.Data.IDbConnection _db;
+	    public TblUserTblArticleDal(System.Data.IDbConnection db)
+	    {
+			_db = db;
+	    }
 	    public Task<int> InsertAsync(TblUserTblArticle model)
 	    {
-		    throw new NotImplementedException();
+		    return _db.QueryFirstAsync<int>(@"
+				INSERT INTO dbo.TblUserTblArticle
+						( AuthorId ,
+						  ArticleId 
+						)
+				VALUES  ( 0 ,
+						  0 
+						);
+				SELECT @@IDENTITY;");
 	    }
 
 	    public Task<int> DeleteAsync(int id)

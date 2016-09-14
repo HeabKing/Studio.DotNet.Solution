@@ -14,10 +14,11 @@ namespace Studio.DotNet.CompositionRoot
 		// This method gets called by the runtime. Use this method to add services to the container
 		public static void ConfigureServices(IServiceCollection services)
 		{
-			// 添加中间件服务
-			services.AddTransient<IDbConnection>(_ => new SqlConnection("Data Source=.;Initial Catalog=DbDotNetStudio;User Id=Sinx;Password=123;"));	 // HACK 一个请求用完要回收
+            // Transient 每次使用服务都会创建一个
+            
+            // 添加中间件服务
+            services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=PC-201609061853\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
 			// 用户
-			// Transient 每次使用服务都会创建一个
 			services.AddTransient<IDal.ITbUserDal, Dal.TblUserDal>();
 			services.AddTransient<IBll.IUserBll, Bll.UserBll>();
 			// 文章

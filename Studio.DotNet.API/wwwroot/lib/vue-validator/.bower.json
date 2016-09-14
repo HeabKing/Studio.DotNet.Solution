@@ -1,0 +1,41 @@
+{
+  "name": "vue-validator",
+  "main": "dist/vue-validator.js",
+  "description": "Validator component for Vue.js",
+  "version": "1.4.4",
+  "homepage": "https://github.com/vuejs/vue-validator",
+  "authors": [
+    "kazuya kawaguchi <kawakazu80@gmail.com>"
+  ],
+  "keywords": [
+    "vue",
+    "validation",
+    "plugin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".*",
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "example",
+    "task",
+    "test",
+    "tests",
+    "Makefile",
+    "LICENSE",
+    "*.js",
+    "*.json",
+    "*.md"
+  ],
+  "_release": "1.4.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.4.4",
+    "commit": "83b414257b599079eb237df1f408d46333fa7682"
+  },
+  "_source": "https://github.com/vuejs/vue-validator.git",
+  "_target": "1.4.4",
+  "_originalSource": "vue-validator"
+}

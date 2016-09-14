@@ -4,7 +4,6 @@ using System.Data;
 using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
-using Studio.DotNet.Domain;
 
 // ReSharper disable ClassNeverInstantiated.Global
 namespace Studio.DotNet.Dal
@@ -34,6 +33,7 @@ namespace Studio.DotNet.Dal
 						   ,@ContentUrl);
 				DECLARE @ArticleId INT;
 				SELECT @ArticleId = @@IDENTITY;
+				SELECT @ArticleId;
 				", new { article.Title, article.Description, article.ContentUrl});	// TODO lianggejieguo
 		}
 
@@ -60,17 +60,17 @@ namespace Studio.DotNet.Dal
 			", new { id });
 		}
 
-		public Task<TblArticle> GetAsync(int id)
+		public Task<Domain.TblArticle> GetAsync(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<TblArticle> GetAsync(string field)
+		public Task<Domain.TblArticle> GetAsync(string field)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<TblArticle> GetOrDefaultAsync(string field)
+		public Task<Domain.TblArticle> GetOrDefaultAsync(string field)
 		{
 			throw new NotImplementedException();
 		}
