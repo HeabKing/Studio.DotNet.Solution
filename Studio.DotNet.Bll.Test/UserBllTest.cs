@@ -40,5 +40,19 @@ namespace Studio.DotNet.Bll.Test
 			Assert.True(user.Id == id);
 			Assert.NotNull(user.Name);
 		}
+
+        /// <summary>
+        /// 添加用户测试
+        /// </summary>
+        [Fact]
+	    public void AddAsyncTest()
+        {
+            var userid = _userBll.AddAsync(new Domain.TblUser
+            {
+                Email = "Test@Test@qq.com", 
+                Password = "Test"
+            }).Result;
+            Assert.True(userid > 0);
+        }
 	}
 }

@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Studio.DotNet.Domain;
 
 // ReSharper disable ClassNeverInstantiated.Global
 namespace Studio.DotNet.Dal
@@ -20,9 +19,11 @@ namespace Studio.DotNet.Dal
             _db = db;
         }
 
-        public Task<int> InsertAsync(Domain.TblUser model)
+        public Task<int> InsertAsync(Domain.TblUser user)
         {
-			return null;
+            return _db.QueryFirstAsync<int>(@"
+                INSERT INTO TblUser(Email, [Password])
+                    VALUES(@Email, @Password)", user);
         }
 
         public Task<int> DeleteAsync(int id)
@@ -44,17 +45,17 @@ namespace Studio.DotNet.Dal
 				", new {id});
         }
 
-	    public Task<TblUser> GetAsync(int id)
+	    public Task<Domain.TblUser> GetAsync(int id)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblUser> GetAsync(string field)
+	    public Task<Domain.TblUser> GetAsync(string field)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblUser> GetOrDefaultAsync(string field)
+	    public Task<Domain.TblUser> GetOrDefaultAsync(string field)
 	    {
 		    throw new NotImplementedException();
 	    }

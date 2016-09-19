@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -62,6 +63,19 @@ namespace Studio.DotNet.API
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+
+            // 2016-09-19 Authentication 中间件
+            // my own identity based on Microsoft.AspNetCore.Authentication.Cookies
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "DotNetStudio.Login",    // this scheme name
+                LoginPath = new PathString("/Api/Account/Cookie/"),   // if has not been authenticated, redirect to login path
+                                                                      // PathString: provides correct escoping path
+                AccessDeniedPath = new PathString("/Api/Account/Forbidden/"),   // if user attmpt to access but does not pass the authorization policies
+                AutomaticAuthenticate = true,   // true: middleware run on every request and attempt to validate and reconstruct any serialized principal it created
+                AutomaticChallenge = true   // challenge 质询, redirect browser to the LoginPath/AccessDeniedPath when authorization fails.
+            });
+
 
             // WebAPI此方法没有里面的lambda参数
             app.UseMvc(

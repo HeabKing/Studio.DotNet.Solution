@@ -24,6 +24,7 @@
     // ------------------------- MVC End -----------------------
 
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+    "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
 
     "System.Data.Common": "4.1.0",
     "Studio.DotNet.CompositionRoot": "1.0.0-*" //"Microsoft.AspNetCore.Mvc": "1.0.0",

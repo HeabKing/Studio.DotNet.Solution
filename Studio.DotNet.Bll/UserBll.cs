@@ -16,11 +16,10 @@ namespace Studio.DotNet.Bll
         /// <summary>
         /// 用户注册
         /// </summary>
-        /// <param name="model"></param>
         /// <returns></returns>
-        public Task<int> AddAsync(Domain.TblUser model)
+        public Task<int> AddAsync(Domain.TblUser user)
         {
-           return null;
+            return _dal.InsertAsync(user);
         }
 
         public Task<bool> RemoveAsync(int id)
