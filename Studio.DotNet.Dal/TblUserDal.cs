@@ -23,7 +23,8 @@ namespace Studio.DotNet.Dal
         {
             return _db.QueryFirstAsync<int>(@"
                 INSERT INTO TblUser(Email, [Password])
-                    VALUES(@Email, @Password)", user);
+                    VALUES(@Email, @Password);
+                SELECT @@IDENTITY", user);
         }
 
         public Task<int> DeleteAsync(int id)
