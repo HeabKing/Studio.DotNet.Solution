@@ -17,7 +17,7 @@ namespace Studio.DotNet.CompositionRoot
             // Transient 每次使用服务都会创建一个
             
             // 添加中间件服务
-            services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=PC-201609061853\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
+            services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
 			// 用户
 			services.AddTransient<IDal.ITbUserDal, Dal.TblUserDal>();
 			services.AddTransient<IBll.IUserBll, Bll.UserBll>();
