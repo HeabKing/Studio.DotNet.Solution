@@ -41,7 +41,7 @@
   "frameworks": {
     "net461": {
       "dependencies": {
-        "Sinx.Utility": "0.0.1.25"
+        "Sinx.Utility": "0.0.1.26"
       }
     }
   },
