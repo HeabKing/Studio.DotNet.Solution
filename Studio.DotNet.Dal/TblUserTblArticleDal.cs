@@ -18,10 +18,10 @@ namespace Studio.DotNet.Dal
 						( AuthorId ,
 						  ArticleId 
 						)
-				VALUES  ( 0 ,
-						  0 
+				VALUES  ( @AuthorId ,
+						  @ArticleId 
 						);
-				SELECT @@IDENTITY;");
+				SELECT @@IDENTITY;", model);
 	    }
 
 	    public Task<int> DeleteAsync(int id)

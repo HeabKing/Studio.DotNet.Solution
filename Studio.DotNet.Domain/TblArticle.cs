@@ -10,7 +10,7 @@ namespace Studio.DotNet.Domain
     /// 文章领域模型
     /// </summary>
     /// <remarks>Sinx 2016-08-31</remarks>
-    public class TblArticle
+    public class TblArticle : Page
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "请输入合法的文章标题")]

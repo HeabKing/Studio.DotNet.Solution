@@ -1,0 +1,128 @@
+﻿@model Studio.DotNet.API.Model.ArticleViewModel
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>写文章</title>
+	<link href="/lib/fex-webuploader/dist/webuploader.css" rel="stylesheet" />
+</head>
+<body>
+<span hidden>@DateTime.Now</span>
+<form id="article-form" action="/#submitting" method="post" style="text-align: center">
+    <input type="text" value="" asp-for="UserId" hidden/>
+    <p>
+        标题: <input type="text" asp-for="Title" v-model="article.title"/>
+    </p>
+    <p>
+        标签: <input type="text" placeholder="使用空格进行分割" asp-for="Tags" v-model="article.tags"/>
+    </p>
+    <p>
+        摘要: <textarea asp-for="Description" v-model="article.description"></textarea>
+    </p>
+    <div v-if="!article.contentUrl">
+        <div v-if="!uploader.isUploading">
+            <div id="uploader" class="wu-example">
+                <!--用来存放文件信息-->
+                <div id="thelist" class="uploader-list"></div>
+                <div class="btns">
+                    <div id="picker">选择Word文件</div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            正在上传...
+        </div>
+    </div>
+    <div v-else>
+        <a href="{{article.contentUrl}}" target="_blank">查看文件</a>
+    </div>
+    <input asp-for="ContentUrl" value="{{article.contentUrl}}" hidden/>
+    <div asp-validation-summary="All"></div>
+    <p>
+        <input type="button" value="提交" v-on:click="submit()"/>
+    </p>
+</form>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/fex-webuploader/dist/webuploader.js"></script>
+<script src="~/lib/vue/dist/vue.js"></script>
+<script src="~/lib/vue-resource/dist/vue-resource.js"></script>
+<!--vue logic-->
+<script>
+    var v = new Vue({
+        el: "#article-form",
+        data: {
+            article: {
+                title: "",
+                tags: "",
+                contentUrl: "" // 这里写上这个初始化的原因是: vue中只有这些被代理的属性是响应的。如果在实例创建之后添加新的属性到实例上，它不会触发视图更新
+            },
+            form: $("form"),
+            uploader: {
+                isUploading: false
+            }
+        },
+        methods: {
+            submit: function() {
+                if (v.validteForm()) {
+                    this.$http.post('/api/article', JSON.stringify(v.article))
+                        .then((response) => {
+                                alert(response.data.message);
+                            },
+                            (response) => {
+                                alert("服务器开小差了");
+                            });
+                }
+            },
+            validteForm: function() {
+                v.form.data("validator").settings.ignore = ""; // for hidden element get validate
+                $.validator.unobtrusive.parse(v.form);
+                v.form.validate();
+                return v.form.valid();
+            }
+        }
+    });
+</script>
+<!--web uploader logic-->
+<script>
+    function init() {
+        var uploader = WebUploader.create({
+            // 选完文件是否自动上传
+            auto: true,
+            // swf文件路径
+            swf: "/lib/fex-webuploader/dist/Uploader.swf",
+            // 文件接收服务端。
+            server: "/api/article/contentUrl",
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#picker',
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            // 文件类型筛选
+            accept: {
+                title: 'Word',
+                extensions: 'doc,docx',
+                mimeTypes: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            }
+        });
+        uploader.on("uploadProgress",
+            function() {
+                v.isUploading = true;
+            });
+        uploader.on('uploadAccept',
+            function(object, ret) {
+                v.isUploading = false;
+                if (ret.status === "ok") {
+                    v.article.contentUrl = ret.data;
+                } else {
+                    alert("转换失败");
+                    window.location.reload();
+                }
+            });
+    }
+
+    $(init);
+</script>
+</body>
+</html>

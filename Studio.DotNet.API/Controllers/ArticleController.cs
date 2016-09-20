@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Studio.DotNet.API.Model;
 
 namespace Studio.DotNet.API.Controllers
 {
@@ -24,7 +25,7 @@ namespace Studio.DotNet.API.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get(Domain.TblArticle article)
         {
             return new string[] { "value1", "value2" };
         }
@@ -46,6 +47,7 @@ namespace Studio.DotNet.API.Controllers
         //[ValidateAntiForgeryToken]    // 防止跨域攻击
         public async Task<IActionResult> Post([FromBody]Model.ArticleViewModel article)
         {
+            article.UserId = 1; // TODO default value is admin
             if (!ModelState.IsValid){return Json(new
             {
                 Status="error",
@@ -58,11 +60,12 @@ namespace Studio.DotNet.API.Controllers
                 Regex.Split(article.Tags.Trim(), @"\s")
                     .Where(m => !string.IsNullOrWhiteSpace(m))
                     .Select(t => new Domain.TblTag { Value = t }), article.UserId);
-            return Json(article);
+            return Json(new AjaxJsonResult { Status = "ok", Data = article, Message = "提交成功"});
         }
 
-        [HttpGet("~/Article/View/Add")]
-        public IActionResult GetViewAdd()
+        [ResponseCache(Duration = 60)]
+        [HttpGet("~/Article/AddView")]
+        public IActionResult AddView()
         {
             return View();
         }
