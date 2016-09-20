@@ -7,5 +7,6 @@ namespace Studio.DotNet.IBll
 {
     public interface IUserBll : IBaseBll<Domain.TblUser>
     {
+        Task<Domain.TblUser> GetOrDefaultAsync(Domain.TblUser user);
     }
 }

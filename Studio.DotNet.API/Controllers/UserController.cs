@@ -7,27 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Studio.DotNet.API.Controllers
 {
-	/// <summary>
-	/// 用户相关API
-	/// </summary>
-	/// <remarks>Sinx 2016-08-31</remarks>
+    /// <summary>
+    /// 用户相关API
+    /// </summary>
+    /// <remarks>Sinx 2016-08-31</remarks>
     [Route("api/[controller]")]
     public class UserController : Controller
-	{
-		/// <summary>
-		/// 用户逻辑访问层
-		/// </summary>
-		private readonly IBll.IUserBll _userBll;
+    {
+        private const string LoginCookieScheme = "DotNetStudio.Login";
 
-		/// <summary>
-		/// 获取服务
-		/// </summary>
-		/// <param name="bll"></param>
-		/// <remarks>Sinx 2016-08-31</remarks>
-		public UserController(IBll.IUserBll bll)
-		{
-			_userBll = bll;
-		}
+        /// <summary>
+        /// 用户逻辑访问层
+        /// </summary>
+        private readonly IBll.IUserBll _userBll;
+
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <param name="bll"></param>
+        /// <remarks>Sinx 2016-08-31</remarks>
+        public UserController(IBll.IUserBll bll)
+        {
+            _userBll = bll;
+        }
 
         // GET api/values
         [HttpGet]
@@ -45,8 +47,21 @@ namespace Studio.DotNet.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-			var user = await _userBll.GetAsync(id);
-			return Json(user);
+            var user = await _userBll.GetAsync(id);
+            return Json(user);
+        }
+
+        [HttpPost("Cookie")]
+        public async Task<IActionResult> GetCookie([FromBody] Domain.TblUser user)
+        {
+            if (!ModelState.IsValid) { return BadRequest(); }
+            var getuser = await _userBll.GetOrDefaultAsync(user);
+            if (getuser == null)
+            {
+                return Json(new Model.AjaxJsonResult { Status = "error", Message = "get user info error" });
+            }
+            await HttpContext.Authentication.SignInAsync(LoginCookieScheme, UserToPrincipal(getuser));
+            return Json(new Model.AjaxJsonResult { Status = "ok", Data = new { getuser.Id } });
         }
 
         // POST api/values
@@ -55,16 +70,10 @@ namespace Studio.DotNet.API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
             user.Id = await _userBll.AddAsync(user);
-            var claims = new List<Claim>
-            {
-                new Claim("DotNetStudio.Account", ""),
-                new Claim($"DotNetStudio.Account.{nameof(user.Email)}", user.Email),
-                new Claim($"DotNetStudio.Account.{nameof(user.Id)}", user.Id.ToString())
-            };
-            await HttpContext.Authentication.SignInAsync("DotNetStudio.Login",
-                new ClaimsPrincipal(new ClaimsIdentity(claims)));
+
+            await HttpContext.Authentication.SignInAsync(LoginCookieScheme, UserToPrincipal(user));
             HttpContext.Response.StatusCode = 201;
-            return Json(new { Status = "ok", Data = new { user.Id }, Message = "created" });
+            return Json(new Model.AjaxJsonResult { Status = "ok", Data = new { user.Id } });
         }
 
         // PUT api/values/5
@@ -77,6 +86,22 @@ namespace Studio.DotNet.API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        /// <summary>
+        /// 将用户转换为基于声明的主体
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+	    private ClaimsPrincipal UserToPrincipal(Domain.TblUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim("DotNetStudio.Account", ""),
+                new Claim($"DotNetStudio.Account.{nameof(user.Email)}", user.Email),
+                new Claim($"DotNetStudio.Account.{nameof(user.Id)}", user.Id.ToString())
+            };
+            return new ClaimsPrincipal(new ClaimsIdentity(claims));
         }
     }
 }

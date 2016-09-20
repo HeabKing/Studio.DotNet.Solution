@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Studio.DotNet.Domain;
 using Dapper;
 namespace Studio.DotNet.Dal
 {
@@ -12,7 +11,7 @@ namespace Studio.DotNet.Dal
 	    {
 			_db = db;
 	    }
-	    public Task<int> InsertAsync(TblUserTblArticle model)
+	    public Task<int> InsertAsync(Domain.TblUserTblArticle model)
 	    {
 		    return _db.QueryFirstAsync<int>(@"
 				INSERT INTO dbo.TblUserTblArticle
@@ -30,29 +29,29 @@ namespace Studio.DotNet.Dal
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<int> UpdateAsync(TblUserTblArticle model)
+	    public Task<int> UpdateAsync(Domain.TblUserTblArticle model)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblUserTblArticle> GetOrDefaultAsync(int id)
+	    public Task<Domain.TblUserTblArticle> GetOrDefaultAsync(int id)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblUserTblArticle> GetAsync(int id)
+	    public Task<Domain.TblUserTblArticle> GetAsync(int id)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblUserTblArticle> GetAsync(string field)
-	    {
-		    throw new NotImplementedException();
-	    }
+        public Task<Domain.TblUserTblArticle> GetAsync(Domain.TblUserTblArticle model)
+        {
+            throw new NotImplementedException();
+        }
 
-	    public Task<TblUserTblArticle> GetOrDefaultAsync(string field)
-	    {
-		    throw new NotImplementedException();
-	    }
+        public Task<Domain.TblUserTblArticle> GetOrDefaultAsync(Domain.TblUserTblArticle model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

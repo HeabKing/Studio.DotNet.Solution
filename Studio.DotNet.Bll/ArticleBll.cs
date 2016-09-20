@@ -40,7 +40,7 @@ namespace Studio.DotNet.Bll
 			var insertTagTaskList = new List<Task<int>>();
 			foreach (var tag in tagWithValues)
 			{
-				var temp = await _tagDal.GetOrDefaultAsync(tag.Value).ConfigureAwait(false);
+				var temp = await _tagDal.GetOrDefaultAsync(tag).ConfigureAwait(false);
 				if (temp == null)
 				{
 					var insertTagTask = _tagDal.InsertAsync(new TblTag { Value = tag.Value });

@@ -12,7 +12,11 @@ namespace Studio.DotNet.Bll
         {
             _dal = dal;
         }
-
+        public async Task<Domain.TblUser> GetOrDefaultAsync(Domain.TblUser user)
+        {
+            var getuser = await _dal.GetOrDefaultAsync(user) ?? new Domain.TblUser();
+            return getuser.Password != user.Password ? null : getuser;
+        }
         /// <summary>
         /// 用户注册
         /// </summary>
@@ -34,7 +38,9 @@ namespace Studio.DotNet.Bll
 
         public Task<Domain.TblUser> GetAsync(int id)
         {
-	        return _dal.GetOrDefaultAsync(id);
+            return _dal.GetOrDefaultAsync(id);
         }
+
+
     }
 }

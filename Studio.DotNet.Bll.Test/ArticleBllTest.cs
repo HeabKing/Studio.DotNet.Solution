@@ -40,7 +40,7 @@ namespace Studio.DotNet.Bll.Test
 			int userId = 1;
 			var articleId = _articleBll.AddAsync(article, tags, userId).Result;
 			Assert.True(articleId > 0);
-			tags.ToList().ForEach(t => Assert.True(_tagDal.GetAsync(t.Value).Result.Id > 0));
+			tags.ToList().ForEach(t => Assert.True(_tagDal.GetAsync(t).Result.Id > 0));
 		}
     }
 }

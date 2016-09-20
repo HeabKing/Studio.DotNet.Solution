@@ -4,6 +4,7 @@ using System.Data;
 using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
+using Studio.DotNet.Domain;
 
 // ReSharper disable ClassNeverInstantiated.Global
 namespace Studio.DotNet.Dal
@@ -65,14 +66,14 @@ namespace Studio.DotNet.Dal
 			throw new NotImplementedException();
 		}
 
-		public Task<Domain.TblArticle> GetAsync(string field)
-		{
-			throw new NotImplementedException();
-		}
+	    public Task<TblArticle> GetAsync(TblArticle field)
+	    {
+	        throw new NotImplementedException();
+	    }
 
-		public Task<Domain.TblArticle> GetOrDefaultAsync(string field)
-		{
-			throw new NotImplementedException();
-		}
+	    public Task<TblArticle> GetOrDefaultAsync(TblArticle field)
+	    {
+	        throw new NotImplementedException();
+	    }
 	}
 }

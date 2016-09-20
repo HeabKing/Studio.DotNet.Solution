@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Studio.DotNet.Domain;
 using Dapper;
 
 namespace Studio.DotNet.Dal
@@ -14,7 +13,7 @@ namespace Studio.DotNet.Dal
 		{
 			_db = db;
 		}
-	    public Task<int> InsertAsync(TblTag model)
+	    public Task<int> InsertAsync(Domain.TblTag model)
 	    {
 		    return _db.ExecuteAsync(@"
 				INSERT INTO [dbo].[TblTag]
@@ -28,17 +27,17 @@ namespace Studio.DotNet.Dal
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<int> UpdateAsync(TblTag model)
+	    public Task<int> UpdateAsync(Domain.TblTag model)
 	    {
 		    throw new NotImplementedException();
 	    }
 
-	    public Task<TblTag> GetOrDefaultAsync(int id)
+	    public Task<Domain.TblTag> GetOrDefaultAsync(int id)
 	    {
 		    return _db.QueryFirstOrDefaultAsync<Domain.TblTag>("SELECT * FROM dbo.TblTag WHERE Id = @id;", new { id });
 	    }
 
-	    public async Task<TblTag> GetAsync(int id)
+	    public async Task<Domain.TblTag> GetAsync(int id)
 	    {
 		    var tag = await GetOrDefaultAsync(id).ConfigureAwait(false);
 			if (tag == null)
@@ -48,19 +47,14 @@ namespace Studio.DotNet.Dal
 			return tag;
 	    }
 
-	    public async Task<TblTag> GetAsync(string value)
-		{
-			var tag = await GetOrDefaultAsync(value).ConfigureAwait(false);
-			if (tag == null)
-			{
-				throw new Exception($"指定{nameof(value)}下{value}无内容");
-			}
-			return tag;
-		}
+        public Task<Domain.TblTag> GetAsync(Domain.TblTag model)
+        {
+            throw new NotImplementedException();
+        }
 
-	    public Task<TblTag> GetOrDefaultAsync(string value)
-	    {
-			return _db.QueryFirstOrDefaultAsync<Domain.TblTag>("SELECT * FROM dbo.TblTag WHERE Value = @value;", new { value });
-		}
+        public Task<Domain.TblTag> GetOrDefaultAsync(Domain.TblTag model)
+        {
+            return _db.QueryFirstOrDefaultAsync<Domain.TblTag>("SELECT * FROM dbo.TblTag WHERE Value = @Value;", model);
+        }
     }
 }

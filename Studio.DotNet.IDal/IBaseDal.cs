@@ -17,7 +17,7 @@ namespace Studio.DotNet.IDal
         Task<int> UpdateAsync(T model);
         Task<T> GetOrDefaultAsync(int id);
 	    Task<T> GetAsync(int id);
-	    Task<T> GetAsync(string field);
-	    Task<T> GetOrDefaultAsync(string field);
+	    Task<T> GetAsync(T model);
+	    Task<T> GetOrDefaultAsync(T model);
     }
 }

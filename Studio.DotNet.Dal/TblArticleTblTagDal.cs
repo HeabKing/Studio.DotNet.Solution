@@ -44,14 +44,14 @@ namespace Studio.DotNet.Dal
 			throw new NotImplementedException();
 		}
 
-		public Task<TblArticleTblTag> GetAsync(string field)
-		{
-			throw new NotImplementedException();
-		}
+	    public Task<TblArticleTblTag> GetAsync(TblArticleTblTag model)
+	    {
+	        throw new NotImplementedException();
+	    }
 
-		public Task<TblArticleTblTag> GetOrDefaultAsync(string field)
-		{
-			throw new NotImplementedException();
-		}
+	    public Task<TblArticleTblTag> GetOrDefaultAsync(TblArticleTblTag model)
+	    {
+	        throw new NotImplementedException();
+	    }
 	}
 }
