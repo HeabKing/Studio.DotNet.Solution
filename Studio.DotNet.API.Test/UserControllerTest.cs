@@ -28,9 +28,10 @@ namespace Studio.DotNet.API.Test
             var response = new HttpClient().SendAsync(HttpRequestMessageEx.CreateFromRaw(reqeustString)).Result;
             var content = response.Content.ReadAsStringAsync().Result;
             var userid = Convert.ToInt32(Regex.Match(content, @"id.+?(?<userid>\d+)").Result("${userid}"));
-            Assert.True(response.StatusCode == System.Net.HttpStatusCode.Created);
-            Assert.True(Regex.IsMatch(content, "id", RegexOptions.IgnoreCase));
-            Assert.True(userid > 0);
+            Assert.True(response.StatusCode == System.Net.HttpStatusCode.Created);  // created user
+            Assert.True(Regex.IsMatch(content, "id", RegexOptions.IgnoreCase));     // returned userid
+            Assert.True(userid > 0);    // returned correct userid
+            Assert.True(response.Headers.Any(h => h.Key == "Set-Cookie"));          // add cookie to front client
         }
     }
 }
