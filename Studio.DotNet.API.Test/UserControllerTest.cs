@@ -18,20 +18,27 @@ namespace Studio.DotNet.API.Test
         [Fact]
         public void PostAsyncTest()
         {
-            string reqeustString = @"
+            string requestString = @"
                 POST http://localhost:6688/api/user HTTP/1.1
                 Host: localhost:6688
                 Content-Length: 42
                 Content-Type: application/json; charset=utf-8
 
                 {""email"":""test@test.com"",""password"":""123123""}";
-            var response = new HttpClient().SendAsync(HttpRequestMessageEx.CreateFromRaw(reqeustString)).Result;
-            var content = response.Content.ReadAsStringAsync().Result;
-            var userid = Convert.ToInt32(Regex.Match(content, @"id.+?(?<userid>\d+)").Result("${userid}"));
-            Assert.True(response.StatusCode == System.Net.HttpStatusCode.Created);  // created user
-            Assert.True(Regex.IsMatch(content, "id", RegexOptions.IgnoreCase));     // returned userid
-            Assert.True(userid > 0);    // returned correct userid
-            Assert.True(response.Headers.Any(h => h.Key == "Set-Cookie"));          // add cookie to front client
+            using (var client = new HttpClient())
+            {
+                var response = client.SendAsync(HttpRequestMessageEx.CreateFromRaw(requestString)).Result;
+                var content = response.Content.ReadAsStringAsync().Result;
+                var userid = Convert.ToInt32(Regex.Match(content, @"id.+?(?<userid>\d+)").Result("${userid}"));
+                Assert.True(response.StatusCode == System.Net.HttpStatusCode.Created);  // created user
+                Assert.True(Regex.IsMatch(content, "id", RegexOptions.IgnoreCase));     // returned userid
+                Assert.True(userid > 0);    // returned correct userid
+                Assert.True(response.Headers.Any(h => h.Key == "Set-Cookie"));          // add cookie to front client    
+
+                // if email format is invalid return 401 bad request
+                response = client.SendAsync(HttpRequestMessageEx.CreateFromRaw(requestString.Replace("@", ""))).Result;
+                Assert.True(response.StatusCode == System.Net.HttpStatusCode.BadRequest);
+            }
         }
     }
 }
