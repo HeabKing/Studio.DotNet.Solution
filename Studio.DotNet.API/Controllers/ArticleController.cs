@@ -38,6 +38,20 @@ namespace Studio.DotNet.API.Controllers
             return Json(article);
         }
 
+        [ResponseCache(Duration = 60)]
+        [HttpGet("~/Article/AddView")]
+        public IActionResult AddView()
+        {
+            return View();
+        }
+
+        [HttpGet("~/Article/DetailView")]
+        public IActionResult DetailView()
+        {
+            return View();
+        }
+
+
         /// <summary>
         /// 添加文章
         /// </summary>
@@ -61,13 +75,6 @@ namespace Studio.DotNet.API.Controllers
                     .Where(m => !string.IsNullOrWhiteSpace(m))
                     .Select(t => new Domain.TblTag { Value = t }), article.UserId);
             return Json(new AjaxJsonResult { Status = "ok", Data = article, Message = "提交成功"});
-        }
-
-        [ResponseCache(Duration = 60)]
-        [HttpGet("~/Article/AddView")]
-        public IActionResult AddView()
-        {
-            return View();
         }
 
         /// <summary>
