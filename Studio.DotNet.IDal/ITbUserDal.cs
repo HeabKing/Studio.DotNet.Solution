@@ -9,7 +9,7 @@ namespace Studio.DotNet.IDal
     /// 用户数据访问接口
     /// </summary>
     /// <remarks>Sinx 2016-08-31</remarks>
-    public interface ITbUserDal : IBaseDal<Domain.TblUser>
+    public interface ITblUserDal : IBaseDal<Domain.TblUser>
     {
     }
 }

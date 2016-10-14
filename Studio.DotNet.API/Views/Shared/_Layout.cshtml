@@ -1,3 +1,107 @@
-﻿@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
-@RenderBody()
-@RenderSection("scripts", required: false)
+﻿@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)	@*TODO : ApplicationInsightsJavaScript Usage*@
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<!-- META TAGS -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DotNet.Studio</title>
+	<link rel="shortcut icon" href="/images/favicon.png" />
+	<!-- Style Sheet-->
+	<link rel="stylesheet" href="/style.css" />
+	<link rel="stylesheet" id="bootstrap-css-css" href="/css/bootstrap5152.css?ver=1.0" type="text/css" media="all" />
+	<link rel="stylesheet" id="responsive-css-css" href="/css/responsive5152.css?ver=1.0" type="text/css" media="all" />
+	<link rel="stylesheet" id="pretty-photo-css-css" href="/js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4" type="text/css" media="all" />
+	<link rel="stylesheet" id="main-css-css" href="/css/main5152.css?ver=1.0" type="text/css" media="all" />
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		@* ReSharper disable once Html.PathError *@
+		<script src="/js/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<!-- Start of Header -->
+	<div class="header-wrapper">
+		<header>
+			<div class="container">
+				<div class="logo-container">
+					<!-- Website Logo -->
+					<a href="/" title="Knowledge Base Theme">
+						<span style="color: white;font-size: x-large;">DotNet.Studio</span>
+					</a>
+					<span class="tag-line">专注DotNet技术</span>
+				</div>
+				<!-- Start of Main Navigation -->
+				<nav class="main-nav">
+					<div class="menu-top-menu-container">
+						<ul id="menu-top-menu" class="clearfix">
+							<li class="current-menu-item"><a href="/">主页</a></li>
+							<li>
+								<a href="javascript:void(0)">登录/注册</a>
+								<ul class="sub-menu">
+									<li><a asp-controller="User" asp-action="LoginView">登录</a></li>
+									<li><a asp-controller="User" asp-action="RegisterView">注册</a></li>
+								</ul>
+							</li>
+							<li><a href="javascript:void(0)">联系作者</a></li>
+						</ul>
+					</div>
+				</nav>
+				<!-- End of Main Navigation -->
+
+			</div>
+		</header>
+	</div>
+	<!-- End of Header -->
+	@RenderBody()
+	<!-- Start of Footer -->
+	<footer id="footer-wrapper">
+		<!-- Footer Bottom -->
+		<div id="footer-bottom-wrapper">
+			<div id="footer-bottom" class="container">
+				<div class="row">
+					<div class="span6">
+						<p class="copyright">
+							Copyright © 2016. All Rights Reserved by KnowledgeBase.Collect from Sinx.
+						</p>
+					</div>
+					<div class="span6">
+						<!-- Social Navigation -->
+						<ul class="social-nav clearfix">
+							<li class="linkedin"><a target="_blank" href="#"></a></li>
+							<li class="stumble"><a target="_blank" href="#"></a></li>
+							<li class="google"><a target="_blank" href="#"></a></li>
+							<li class="deviantart"><a target="_blank" href="#"></a></li>
+							<li class="flickr"><a target="_blank" href="#"></a></li>
+							<li class="skype"><a target="_blank" href="skype:#?call"></a></li>
+							<li class="rss"><a target="_blank" href="#"></a></li>
+							<li class="twitter"><a target="_blank" href="#"></a></li>
+							<li class="facebook"><a target="_blank" href="#"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of Footer Bottom -->
+	</footer>
+	<!-- End of Footer -->
+	@* ReSharper disable once Html.IdNotResolved *@
+	<a href="#top" id="scroll-top"></a>
+	<environment names="Development">
+		<script>
+			window.isDebug = true;
+		</script>
+	</environment>
+	<environment names="Staging,Production">
+		<script>
+			window.isDebug = false;
+		</script>
+	</environment>
+	@RenderSection("scripts", required: false) @*TODO : RenderSection usage *@
+</body>
+</html>

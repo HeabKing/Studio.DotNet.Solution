@@ -217,7 +217,7 @@ a {
 }
 
 a:hover {
-  color: #395996;
+  color: #3959BB;
   text-decoration: underline;
 }
 
@@ -3308,7 +3308,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .btn-link:hover {
-  color: #395996;
+  color: #3959BB;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -3856,8 +3856,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav .dropdown-toggle:hover .caret {
-  border-top-color: #395996;
-  border-bottom-color: #395996;
+  border-top-color: #3959BB;
+  border-bottom-color: #3959BB;
 }
 
 /* move down carets for tabs */

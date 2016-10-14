@@ -19,7 +19,7 @@ namespace Studio.DotNet.CompositionRoot
             // 添加中间件服务
             services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
 			// 用户
-			services.AddTransient<IDal.ITbUserDal, Dal.TblUserDal>();
+			services.AddTransient<IDal.ITblUserDal, Dal.TblUserDal>();
 			services.AddTransient<IBll.IUserBll, Bll.UserBll>();
 			// 文章
 			services.AddTransient<IDal.ITblArticleDal, Dal.TblArticleDal>();

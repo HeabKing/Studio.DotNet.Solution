@@ -1,5 +1,6 @@
 ﻿// ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Studio.DotNet.Domain
@@ -12,10 +13,7 @@ namespace Studio.DotNet.Domain
     {
         public int Id { get; set; }
 		public string Name { get; set; }
-#if NETSTANDARD1_3
-        [EmailAddress]
-#endif
-        public string Email { get; set; }
-        public string Password { get; set; }
+		public string Email { get; set; }
+		public string Password { get; set; }
 	}
 }

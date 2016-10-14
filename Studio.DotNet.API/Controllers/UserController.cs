@@ -31,13 +31,6 @@ namespace Studio.DotNet.API.Controllers
             _userBll = bll;
         }
 
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         /// <summary>
 		/// 获取单个用户信息
 		/// </summary>
@@ -47,28 +40,47 @@ namespace Studio.DotNet.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = await _userBll.GetAsync(id);
+            var user = await _userBll.GetAsync(new Domain.TblUser {Id = id});
             return Json(user);
         }
 
-        [HttpPost("Cookie")]
-        public async Task<IActionResult> GetCookie([FromBody] Domain.TblUser user)
-        {
-            if (!ModelState.IsValid) { return BadRequest(); }
-            var getuser = await _userBll.GetOrDefaultAsync(user);
-            if (getuser == null)
-            {
-                return Json(new Model.AjaxJsonResult { Status = "error", Message = "get user info error" });
-            }
-            await HttpContext.Authentication.SignInAsync(LoginCookieScheme, UserToPrincipal(getuser));
-            return Json(new Model.AjaxJsonResult { Status = "ok", Data = new { getuser.Id } });
-        }
+		[HttpGet("~/User/RegisterView")]
+		public IActionResult RegisterView()
+		{
+			return View();
+		}
 
-        // POST api/values
-        [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]Domain.TblUser user)
+		[HttpGet("~/User/LoginView")]
+	    public IActionResult LoginView()
+		{
+			return View();
+		}
+
+	    [HttpPost("Cookie")]
+		public async Task<IActionResult> GetCookie([FromBody] Domain.TblUser user)
+		{
+			if (!ModelState.IsValid) { return BadRequest(); }
+			var getuser = await _userBll.GetOrDefaultAsync(user);
+			if (getuser == null)
+			{
+				return Json(new Model.AjaxJsonResult { Status = "error", Message = "get user info error" });
+			}
+			await HttpContext.Authentication.SignInAsync(LoginCookieScheme, UserToPrincipal(getuser));
+			return Json(new Model.AjaxJsonResult { Status = "ok", Data = new { getuser.Id } });
+		}
+
+		/// <summary>
+		/// 注册的时候会返回Cookie
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		[HttpPost]
+        public async Task<IActionResult> PostAsync([FromForm]Domain.TblUser user)
         {
             if (!ModelState.IsValid) return BadRequest();
+
+	       // _userBll.GetAsync();
+
             user.Id = await _userBll.AddAsync(user);
 
             await HttpContext.Authentication.SignInAsync(LoginCookieScheme, UserToPrincipal(user));

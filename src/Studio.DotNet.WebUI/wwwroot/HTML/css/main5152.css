@@ -518,7 +518,7 @@ li.comment > article .avatar {
   color: #3b4348;
 }
 .articles-list > h3 a:hover {
-  color: #395996;
+  color: #3959BB;
 }
 
 ul.articles {
@@ -556,7 +556,7 @@ ul.articles li.article-entry:last-child {
   color: #3b4348;
 }
 .article-entry > h4 a:hover {
-  color: #395996;
+  color: #3959BB;
 }
 .article-entry .article-meta {
   display: block;
@@ -575,7 +575,7 @@ ul.articles li.article-entry:last-child {
 }
 .article-entry:hover .like-count {
   background: url("../images/like.png") no-repeat 6px -22px;
-  color: #395996;
+  color: #3959BB;
 }
 
 #footer .article-entry .like-count {
@@ -627,7 +627,7 @@ ul.articles li.article-entry:last-child {
 }
 .hentry .post-meta .like-count:hover {
   background: url("../images/like.png") no-repeat 4px -24px;
-  color: #395996;
+  color: #3959BB;
 }
 
 .like-btn .like-it {
@@ -765,7 +765,7 @@ h1.search-title span {
   background-color: #f8f8f8;
 }
 #live-search-results .search-result:hover a {
-  color: #395996;
+  color: #3959BB;
 }
 #live-search-results .search-result a {
   font-weight: 600;
@@ -791,7 +791,7 @@ h1.search-title span {
 }
 #live-search-results .no-result:hover {
   background-color: #f8f8f8;
-  color: #395996;
+  color: #3959BB;
 }
 #live-search-results .search-result .like-count {
   position: absolute;
@@ -804,7 +804,7 @@ h1.search-title span {
 }
 #live-search-results .search-result:hover .like-count {
   background: url("../images/like.png") no-repeat 6px -22px;
-  color: #395996;
+  color: #3959BB;
 }
 
 /* FAQs --------------------------------------------------------------------------------------------------------------*/
@@ -838,7 +838,7 @@ h1.search-title span {
   margin-bottom: 5px;
 }
 .faq-item.active h3.faq-question {
-  color: #395996;
+  color: #3959BB;
 }
 
 .faq-item h3.faq-question {
@@ -853,7 +853,7 @@ h1.search-title span {
   color: inherit;
 }
 .faq-item h3.faq-question a:hover {
-  color: #395996;
+  color: #3959BB;
 }
 
 .faq-item .faq-answer {
@@ -1050,7 +1050,7 @@ input[type=text].error,
 }
 .toggle dt:hover,
 .accordion dt:hover {
-  color: #395996;
+  color: #3959BB;
 }
 
 .toggle dt span,
@@ -1127,14 +1127,14 @@ input[type=text].error,
 
 .tabs-nav li a:hover {
   background: #fafafa;
-  color: #395996;
+  color: #3959BB;
 }
 
 .tabs-nav li.active a {
-  color: #395996;
+  color: #3959BB;
   background: #fff;
   border-bottom: 2px solid #fff;
-  border-top: 2px solid #395996;
+  border-top: 2px solid #3959BB;
 }
 
 .tabs-container {

@@ -25,4 +25,9 @@ namespace Studio.DotNet.Domain
         public int LikeCount { get; set; }
         public int DislikeCount { get; set; }
     }
+
+	public class Con
+	{
+		public int ad;
+	}
 }

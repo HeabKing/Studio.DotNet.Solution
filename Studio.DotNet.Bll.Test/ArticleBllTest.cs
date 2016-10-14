@@ -24,9 +24,9 @@ namespace Studio.DotNet.Bll.Test
 	    public void GetAsync()
 	    {
 		    int id = 1;
-		    var article = _articleBll.GetAsync(id).Result;
-		    Assert.True(id == article.Id);
-		    Assert.NotNull(article.ContentUrl);
+		    var article = _articleBll.GetAsync(new Domain.TblArticle {Id = id}).Result.FirstOrDefault();
+		    Assert.True(id == article?.Id);
+		    Assert.NotNull(article?.ContentUrl);
 	    }
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace Studio.DotNet.Bll.Test
 			int userId = 1;
 			var articleId = _articleBll.AddAsync(article, tags, userId).Result;
 			Assert.True(articleId > 0);
-			tags.ToList().ForEach(t => Assert.True(_tagDal.GetAsync(t).Result.Id > 0));
+			tags.ToList().ForEach(t => Assert.True(_tagDal.GetAsync(t).Result.FirstOrDefault()?.Id > 0));
 		}
     }
 }

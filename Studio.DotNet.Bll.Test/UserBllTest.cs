@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -36,23 +37,23 @@ namespace Studio.DotNet.Bll.Test
 		public void GetAsyncTest()
 		{
 			const int id = 1;
-			var user = _userBll.GetAsync(id).Result;
-			Assert.True(user.Id == id);
-			Assert.NotNull(user.Name);
+			var user = _userBll.GetAsync(new Domain.TblUser { Id = id }).Result.FirstOrDefault();
+			Assert.True(user?.Id == id);
+			Assert.NotNull(user?.Name);
 		}
 
-        /// <summary>
-        /// 添加用户测试
-        /// </summary>
-        [Fact]
-	    public void AddAsyncTest()
-        {
-            var userid = _userBll.AddAsync(new Domain.TblUser
-            {
-                Email = "Test@Test@qq.com", 
-                Password = "Test"
-            }).Result;
-            Assert.True(userid > 0);
-        }
+		/// <summary>
+		/// 添加用户测试
+		/// </summary>
+		[Fact]
+		public void AddAsyncTest()
+		{
+			var userid = _userBll.AddAsync(new Domain.TblUser
+			{
+				Email = "Test@Test@qq.com",
+				Password = "Test"
+			}).Result;
+			Assert.True(userid > 0);
+		}
 	}
 }

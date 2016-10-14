@@ -10,6 +10,6 @@ namespace Studio.DotNet.IBll
         Task<int> AddAsync(T model);
         Task<bool> RemoveAsync(int id);
         Task<bool> EditAsync(T model);
-        Task<T> GetAsync(int id);
-    }
+		Task<IEnumerable<T>> GetAsync(T model);
+	}
 }

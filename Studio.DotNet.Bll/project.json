@@ -2,11 +2,11 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Studio.DotNet.IBll": "1.0.0-*" //"Studio.DotNet.IDal": "1.0.0-*"//"Studio.DotNet.Domain": "1.0.0-*"
+    "Studio.DotNet.IBll": "1.0.0-*",
+    "System.Data.Common": "4.1.0" //"Studio.DotNet.IDal": "1.0.0-*"//"Studio.DotNet.Domain": "1.0.0-*"
   },
 
   "frameworks": {
-    "netstandard1.1": {
-    }
+    "net461": {} 
   }
 }

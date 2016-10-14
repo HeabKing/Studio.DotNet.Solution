@@ -1,14 +1,13 @@
 {
-  "version": "1.0.0-*",
+	"version": "1.0.0-*",
 
-  "dependencies": {
-    "Dapper": "1.50.0-rc2b",
-    "Studio.DotNet.IDal": "1.0.0-*" //"Studio.DotNet.Domain": "1.0.0-*",
-  },
+	"dependencies": {
+		"Dapper": "1.50.0-rc2b",
+		"Studio.DotNet.IDal": "1.0.0-*",
+		"Sinx.Utility": "0.0.1.30"
+	},
 
-  "frameworks": {
-    "netstandard1.1": {
-      "imports": "dnxcore50"
-    }
-  }
+	"frameworks": {
+		"net461": {}
+	}
 }
