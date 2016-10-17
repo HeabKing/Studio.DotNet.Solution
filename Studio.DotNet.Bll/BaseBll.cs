@@ -8,7 +8,8 @@ namespace Studio.DotNet.Bll
     public class BaseBll<T> : IBll.IBaseBll<T>
     {
 	    private readonly IDal.IBaseDal<T> _dal;
-		public BaseBll(IDal.IBaseDal<T> dal)
+
+	    protected BaseBll(IDal.IBaseDal<T> dal)
 		{
 			_dal = dal;
 		}
@@ -17,15 +18,27 @@ namespace Studio.DotNet.Bll
 		    return _dal.InsertAsync(model);
 	    }
 
-		public virtual async Task<bool> RemoveAsync(int id)
+	    public Task<bool> EditAsync(T model, T @where)
 	    {
-		    return await _dal.DeleteAsync(id) == id;
+		    throw new NotImplementedException();
+	    }
+
+	    public Task<bool> RemoveAsync(T model)
+	    {
+		    throw new NotImplementedException();
+	    }
+
+	    public virtual async Task<bool> RemoveAsync(int id)
+	    {
+		    //return await _dal.DeleteAsync(id) == id; todo
+		    return await Task.FromResult(false);
 	    }
 
 		public virtual async Task<bool> EditAsync(T model)
 	    {
-		    return await _dal.UpdateAsync(model) == 1;
-	    }
+			//return await _dal.UpdateAsync(model) == 1;
+			throw new NotImplementedException();
+		}
 
 		public virtual Task<IEnumerable<T>> GetAsync(T model)
 	    {

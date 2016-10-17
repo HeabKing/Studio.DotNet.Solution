@@ -12,19 +12,32 @@ namespace Studio.DotNet.IDal
 	/// <remarks>Sinx 2016-08-31</remarks>
     public interface IBaseDal<T>
     {
-		Task<IEnumerable<T>> GetAsync(T model);
-		Task<int> InsertAsync(T model);
 		/// <summary>
-		/// 返回受影响行数
+		/// 获取指定条件下的实体集合
 		/// </summary>
 		/// <param name="model"></param>
 		/// <returns></returns>
-		Task<int> UpdateAsync(T model);
+		Task<IEnumerable<T>> GetAsync(T model);
+
 		/// <summary>
-		/// 返回被删除的Id
+		/// 返回添加行的Id
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param name="model"></param>
 		/// <returns></returns>
-		Task<int> DeleteAsync(int id);
+		Task<int> InsertAsync(T model);
+
+	    /// <summary>
+	    /// 返回受影响行数
+	    /// </summary>
+	    /// <param name="model"></param>
+	    /// <param name="where">对指定条件下的实体进行更新</param>
+	    /// <returns></returns>
+	    Task<int> UpdateAsync(T model, T where);
+
+		/// <summary>
+		/// 返回受影响的函数
+		/// </summary>
+		/// <returns></returns>
+		Task<int> DeleteAsync(T model);
     }
 }

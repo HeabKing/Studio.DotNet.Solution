@@ -7,9 +7,9 @@ namespace Studio.DotNet.IBll
 {
     public interface IBaseBll<T>
     {
-        Task<int> AddAsync(T model);
-        Task<bool> RemoveAsync(int id);
-        Task<bool> EditAsync(T model);
 		Task<IEnumerable<T>> GetAsync(T model);
+		Task<int> AddAsync(T model);
+		Task<bool> EditAsync(T model, T where);
+        Task<bool> RemoveAsync(T model);
 	}
 }

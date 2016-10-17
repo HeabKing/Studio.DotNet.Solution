@@ -11,24 +11,63 @@ using Xunit;
 
 namespace Studio.DotNet.Dal.Test
 {
-	public class IBaseDalTest
+	public class BaseDalTest
 	{
-		private readonly IDbConnection _db;
-		public IBaseDalTest()
+		private readonly Dal.BaseDal<Domain.TblArticle> _articleDal;
+
+		public BaseDalTest()
 		{
 			IServiceCollection services = new ServiceCollection();
 			CompositionRoot.Startup.ConfigureServices(services);
-			_db = services.BuildServiceProvider().GetService<IDbConnection>();
+			var db = services.BuildServiceProvider().GetService<IDbConnection>();
+			_articleDal = new Dal.BaseDal<Domain.TblArticle>(db, "dbo.TblArticle");
+
 		}
+
+		#region 2016-10-17 测试Update
+
+		[Fact]
+		public void UpdateAsyncTest()
+		{
+			var affectedRows = _articleDal.UpdateAsync(new Domain.TblArticle { Title = "Test From UpdateAsync" + DateTime.Now}, new Domain.TblArticle { Id = 1014}).Result;
+			Assert.True(affectedRows == 1);
+		}
+
+		#endregion
+
+		#region 2016-10-17 测试Insert
+
+		[Fact]
+		public void InsertAsnycTest()
+		{
+			var articleId = _articleDal.InsertAsync(new Domain.TblArticle { ContentUrl = "Test", Title = "Test" }).Result;
+			Assert.True(articleId > 0);
+			var article = _articleDal.GetAsync(new Domain.TblArticle { Id = articleId }).Result.Single();
+			Assert.True(article.Id == articleId);
+			Assert.True(article.Title == "Test");
+		}
+
+		#endregion
 
 		#region 2016-10-10 测试Get
 
 		[Fact]
 		public void GetAsyncTest()
 		{
-			var dal = new Dal.BaseDal<Domain.TblArticle>(_db, "dbo.TblArticle");
-			var result = dal.GetAsync(new Domain.TblArticle { Id = 10000}).Result;
+			var result = _articleDal.GetAsync(new Domain.TblArticle { Id = 1014 }).Result;
 			Assert.True(result.Count() == 1);
+			var result2 = _articleDal.GetAsync(new Domain.TblArticle {Description = "你好DotNetStudio" }).Result;
+			Assert.True(result2.Any());
+			var result3 = _articleDal.GetAsync(new Domain.TblArticle { Description = "你好DotNetStudio", Id = 1014 }).Result.Single();
+			Assert.True(result3.Id == 1014);
+		}
+
+		[Fact]
+		public void GetAsyncByIdTest()
+		{
+			var result = _articleDal.GetAsync(1014).Result;
+			Assert.True(result.Id == 1014);
+			Assert.True(result.Description == "你好DotNetStudio");
 		}
 
 		#endregion
@@ -148,14 +187,14 @@ namespace Studio.DotNet.Dal.Test
 		[Fact]
 		public void GetIsValueTypeTest()
 		{
-			var article = new Domain.TblArticle { Id = 1};
+			var article = new Domain.TblArticle { Id = 1 };
 			var isValueType1 = article.GetType().GetTypeInfo().GetProperty("Id").PropertyType.IsValueType;
 			Assert.True(isValueType1);
 			var isValueType2 = article.GetType().GetTypeInfo().DeclaredProperties.First(m => m.Name == "Id").PropertyType.GetTypeInfo().IsValueType;
-			Assert.True(isValueType2);	// Property Type is ValueType
-			// ReSharper disable once PossibleMistakenCallToGetType.2
+			Assert.True(isValueType2);  // Property Type is ValueType
+										// ReSharper disable once PossibleMistakenCallToGetType.2
 			var isValueType3 = article.GetType().GetTypeInfo().DeclaredProperties.First(m => m.Name == "Id").PropertyType.GetType().GetTypeInfo().IsValueType;
-			Assert.False(isValueType3);	// System.Type is ValueType
+			Assert.False(isValueType3); // System.Type is ValueType
 		}
 
 		#endregion
