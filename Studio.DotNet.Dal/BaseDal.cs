@@ -137,7 +137,7 @@ namespace Studio.DotNet.Dal
 		public Task<int> DeleteAsync(T model)
 		{
 			var assignedPropertyKeys = model.GetAssignedProperties().Select(m => m.Key);
-			string sql = $@"DELETE FROM dbo.TblArticle WHERE {_tempDelegate(assignedPropertyKeys, null)}";
+			string sql = $@"DELETE FROM {_tableName} WHERE {_tempDelegate(assignedPropertyKeys, null)}";
 			return _db.ExecuteAsync(sql, model);
 		}
 	}
