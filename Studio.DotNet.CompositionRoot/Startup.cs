@@ -1,21 +1,13 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 // ReSharper disable once ClassNeverInstantiated.Global
 namespace Studio.DotNet.CompositionRoot
 {
 	public class Startup
 	{
-		public Startup(IHostingEnvironment env){}
-		//public IConfigurationRoot Configuration { get; }
-		// This method gets called by the runtime. Use this method to add services to the container
 		public static void ConfigureServices(IServiceCollection services)
 		{
-            // Transient 每次使用服务都会创建一个
-            
             // 添加中间件服务
             services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
 			// 用户
@@ -31,8 +23,5 @@ namespace Studio.DotNet.CompositionRoot
 			// 用户 <-> 文章
 			services.AddTransient<IDal.ITblUserTblArticleDal, Dal.TblUserTblArticleDal>();
 		}
-
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory){}
 	}
 }
