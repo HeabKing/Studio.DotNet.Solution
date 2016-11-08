@@ -4,7 +4,7 @@
 	"dependencies": {
 		"Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
 		"Studio.DotNet.Bll": "1.0.0-*", //"Studio.DotNet.IBll": "1.0.0-*" //"Studio.DotNet.IDal": "1.0.0-*"//"Studio.DotNet.Domain": "1.0.0-*"
-		"Studio.DotNet.Dal": "1.0.0-*", //"Studio.DotNet.IDal": "1.0.0-*" //"Studio.DotNet.Domain": "1.0.0-*"
+		"Studio.DotNet.Dal": "1.0.0-*"//, //"Studio.DotNet.IDal": "1.0.0-*" //"Studio.DotNet.Domain": "1.0.0-*"
 		//"Microsoft.AspNetCore.Mvc": "1.0.0"	// net451/netstandard1.6
 		//"using" "Microsoft.AspNetCore.Builder;",
 		//"using" "Microsoft.AspNetCore.Hosting;",
