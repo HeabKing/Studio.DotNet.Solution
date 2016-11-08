@@ -41,7 +41,7 @@
 					<div class="menu-top-menu-container">
 						<ul id="menu-top-menu" class="clearfix">
 							<li class="current-menu-item"><a href="/">主页</a></li>
-							<li>
+							<li style="display:none">
 								<a href="javascript:void(0)">登录/注册</a>
 								<ul class="sub-menu">
 									<li><a asp-controller="User" asp-action="LoginView">登录</a></li>
@@ -62,7 +62,7 @@
 	<!-- Start of Footer -->
 	<footer id="footer-wrapper">
 		<!-- Footer Bottom -->
-		<div id="footer-bottom-wrapper">
+		<div id="footer-bottom-wrapper" hidden>
 			<div id="footer-bottom" class="container">
 				<div class="row">
 					<div class="span6">
