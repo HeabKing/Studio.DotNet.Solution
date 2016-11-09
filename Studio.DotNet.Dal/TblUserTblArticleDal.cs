@@ -9,7 +9,7 @@ namespace Studio.DotNet.Dal
 	// ReSharper disable once ClassNeverInstantiated.Global
 	public class TblUserTblArticleDal : BaseDal<TblUserTblArticle>, IDal.ITblUserTblArticleDal
 	{
-		public TblUserTblArticleDal(IDbConnection db, string tableName) : base(db, tableName)
+		public TblUserTblArticleDal(IDbConnection db) : base(db, nameof(TblUserTblArticle))
 		{
 		}
 	}
