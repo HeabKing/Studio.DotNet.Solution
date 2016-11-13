@@ -1,69 +1,73 @@
 {
-  "dependencies": {
-    // ------------------------- MVC Begin -----------------------
-    //"Microsoft.AspNetCore.Mvc": "1.0.0", // TODO for what? A: see composition
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0", //app.UseDeveloperExceptionPage();app.UseExceptionHandler("/Home/Error");
-    "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "1.0.0-preview2-final",
-      "type": "build"
-    },
-    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0", // TODO: for what?
-    "Microsoft.Extensions.Configuration.Json": "1.0.0", // TODO
-    "Microsoft.Extensions.Logging": "1.0.0", // TODO
-    "Microsoft.Extensions.Logging.Console": "1.0.0",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "Microsoft.ApplicationInsights.AspNetCore": "1.0.0", // TODO for what?
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0", // "app.UseBrowserLink();": null,
-    // ------------------------- MVC End -----------------------
-    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
-    "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
-    "System.Data.Common": "4.1.0",
-    "Studio.DotNet.CompositionRoot": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.1" //"Microsoft.AspNetCore.Mvc": "1.0.0",
-  },
+	"dependencies": {
+		// ------------------------- MVC Begin -----------------------
+		//"Microsoft.AspNetCore.Mvc": "1.0.0", // TODO for what? A: see composition
+		"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+		"Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+		"Microsoft.AspNetCore.StaticFiles": "1.0.0",
+		"Microsoft.AspNetCore.Diagnostics": "1.0.0", //app.UseDeveloperExceptionPage();app.UseExceptionHandler("/Home/Error");
+		"Microsoft.AspNetCore.Razor.Tools": {
+			"version": "1.0.0-preview2-final",
+			"type": "build"
+		},
+		"Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0", // TODO: for what?
+		"Microsoft.Extensions.Configuration.Json": "1.0.0", // TODO
+		"Microsoft.Extensions.Logging": "1.0.0", // TODO
+		"Microsoft.Extensions.Logging.Console": "1.0.0",
+		"Microsoft.Extensions.Logging.Debug": "1.0.0",
+		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+		"Microsoft.ApplicationInsights.AspNetCore": "1.0.0", // TODO for what?
+		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0", // "app.UseBrowserLink();": null,
+		// ------------------------- MVC End -----------------------
+		"Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+		"Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
+		"System.Data.Common": "4.1.0",
+		"Studio.DotNet.CompositionRoot": "1.0.0-*",
+		"Microsoft.AspNetCore.Mvc": "1.0.1" //"Microsoft.AspNetCore.Mvc": "1.0.0",
+	},
 
-  "tools": {
-    // ------------------------- MVC Begin -----------------------
-    "BundlerMinifier.Core": "2.0.238",
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final", // 1. ΪTagHelper�ṩ֧��: https://docs.asp.net/en/latest/mvc/views/tag-helpers/intro.html#managing-tag-helper-scope
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
-    // ------------------------- MVC End -----------------------
-  },
+	"tools": {
+		// ------------------------- MVC Begin -----------------------
+		"BundlerMinifier.Core": "2.0.238",
+		"Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"//, // 1. ΪTagHelper�ṩ֧��: https://docs.asp.net/en/latest/mvc/views/tag-helpers/intro.html#managing-tag-helper-scope
+		//"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+		// ------------------------- MVC End -----------------------
+	},
 
-  "frameworks": {
-    "net461": {
-      "dependencies": {
-      }
-    }
-  },
+	"frameworks": {
+		"net461": {
+			"dependencies": {
+			}
+		}
+	},
 
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
+	"buildOptions": {
+		"emitEntryPoint": true,
+		"preserveCompilationContext": true
+	},
 
-  "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
+	"runtimeOptions": {
+		"configProperties": {
+			"System.GC.Server": true
+		}
+	},
 
-  "publishOptions": {
-    "include": [
-      "wwwroot",
-      "Views",
-      "Areas/**/Views",
-      "appsettings.json",
-      "web.config"
-    ]
-  },
+	"publishOptions": {
+		"include": [
+			"wwwroot",
+			"Views",
+			"Areas/**/Views",
+			"appsettings.json",
+			"web.config"
+		]
+	},
 
-  "scripts": {
-    "prepublish": [ "bower install", "dotnet bundle" ],
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
-  }
+	"scripts": {
+		"prepublish": [ "bower install", "dotnet bundle" ],
+		"postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+	},
+
+	"runtimes": {
+		"win81-x64": {}
+	}
 }
