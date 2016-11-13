@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99F893BE-189
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0F35CEE-C188-44B5-B354-0350F9E861DA}"
 	ProjectSection(SolutionItems) = preProject
+		DotNetStudio.sql = DotNetStudio.sql
 		global.json = global.json
 	EndProjectSection
 EndProject
