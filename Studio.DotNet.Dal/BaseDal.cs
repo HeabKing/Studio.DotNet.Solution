@@ -35,10 +35,12 @@ namespace Studio.DotNet.Dal
 		/// 获取指定条件下的数据集合
 		/// </summary>
 		/// <param name="model">指定条件</param>
+		/// <param name="defaultFields">按照默认值查询的字段</param>
 		/// <returns>没有值返回空集合</returns>
-		public Task<IEnumerable<T>> GetAsync(T model)
+		public Task<IEnumerable<T>> GetAsync(T model, params string[] defaultFields)
 		{
 			var fileds = model.GetAssignedProperties().ToList();
+			fileds.AddRange(defaultFields.Select(item => new KeyValuePair<string, object>(item, typeof(T).GetTypeInfo().GetProperty(item).GetValue(model))));
 			if (!fileds.Any())
 			{
 				throw new ArgumentException("请输入最少一个查询条件");

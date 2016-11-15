@@ -9,7 +9,7 @@ namespace Studio.DotNet.CompositionRoot
 		public static void ConfigureServices(IServiceCollection services)
 		{
             // 添加中间件服务
-            services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=DbDotNetStudio;User Id=sa;Password=123;"));	 // HACK 一个请求用完要回收
+            services.AddTransient<IDbConnection>(_ => new SqlConnection(@"Data Source=neter.me;Initial Catalog=DbDotNetStudio;User Id=sa;Password=Xiong2015;"));	 // HACK 一个请求用完要回收
 			// 用户
 			services.AddTransient<IDal.ITblUserDal, Dal.TblUserDal>();
 			services.AddTransient<IBll.IUserBll, Bll.UserBll>();

@@ -12,12 +12,13 @@ namespace Studio.DotNet.IDal
 	/// <remarks>Sinx 2016-08-31</remarks>
     public interface IBaseDal<T>
     {
-		/// <summary>
-		/// 获取指定条件下的实体集合
-		/// </summary>
-		/// <param name="model"></param>
-		/// <returns></returns>
-		Task<IEnumerable<T>> GetAsync(T model);
+	    /// <summary>
+	    /// 获取指定条件下的实体集合
+	    /// </summary>
+	    /// <param name="model">查询的条件, 非默认值会被认为是条件</param>
+	    /// <param name="defaultFields">按默认值查询的字段</param>
+	    /// <returns></returns>
+	    Task<IEnumerable<T>> GetAsync(T model, params string[] defaultFields);
 
 		/// <summary>
 		/// 返回添加行的Id

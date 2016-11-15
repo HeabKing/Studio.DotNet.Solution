@@ -11,14 +11,15 @@ namespace Studio.DotNet.Dal.Test
 	public class BaseDalTest
 	{
 		private readonly Dal.BaseDal<Domain.TblArticle> _articleDal;
+		private readonly Dal.BaseDal<Domain.TblUser> _userDal;
 
 		public BaseDalTest()
 		{
 			IServiceCollection services = new ServiceCollection();
 			CompositionRoot.Startup.ConfigureServices(services);
 			var db = services.BuildServiceProvider().GetService<IDbConnection>();
-			_articleDal = new Dal.BaseDal<Domain.TblArticle>(db, "dbo.TblArticle");
-
+			_articleDal = new Dal.BaseDal<Domain.TblArticle>(db, nameof(Domain.TblArticle));
+			_userDal = new Dal.BaseDal<Domain.TblUser>(db, nameof(Domain.TblUser));
 		}
 
 		#region 2016-10-17 测试Update
@@ -51,12 +52,8 @@ namespace Studio.DotNet.Dal.Test
 		[Fact]
 		public void GetAsyncTest()
 		{
-			var result = _articleDal.GetAsync(new Domain.TblArticle { Id = 1014 }).Result;
-			Assert.True(result.Count() == 1);
-			var result2 = _articleDal.GetAsync(new Domain.TblArticle {Description = "你好DotNetStudio" }).Result;
-			Assert.True(result2.Any());
-			var result3 = _articleDal.GetAsync(new Domain.TblArticle { Description = "你好DotNetStudio", Id = 1014 }).Result.Single();
-			Assert.True(result3.Id == 1014);
+			var result = _userDal.GetAsync(new Domain.TblUser(), nameof(Domain.TblUser.IsDelete)).Result;
+			Assert.True(result.Any());
 		}
 
 		[Fact]
