@@ -14,9 +14,9 @@ namespace Studio.DotNet.API
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-				.UseUrls("http://*:6688")
+				//.UseUrls("http://*:6688")
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                //.UseIISIntegration()
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 

@@ -1,4 +1,6 @@
-﻿@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)	@*TODO : ApplicationInsightsJavaScript Usage*@
+﻿@using System.Threading.Tasks
+@using Microsoft.ApplicationInsights.Extensibility
+@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)	@*TODO : ApplicationInsightsJavaScript Usage*@
 <!doctype html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
 <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
@@ -10,7 +12,7 @@
 	<!-- META TAGS -->
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>DotNet.Studio</title>
+	<title>@ViewData["Title"]</title>
 	<link rel="shortcut icon" href="/images/favicon.png" />
 	<!-- Style Sheet-->
 	<link rel="stylesheet" href="/style.css" />
