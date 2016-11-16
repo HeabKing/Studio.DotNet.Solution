@@ -47,6 +47,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Studio.DotNet.API.Test", "S
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Studio.DotNet.Dal.Test", "Studio.DotNet.Dal.Test\Studio.DotNet.Dal.Test.xproj", "{DF7A7024-E4E0-48F3-8B56-903FF5931F36}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Studio.DotNet.Web.Default", "Studio.DotNet.Web.Default\Studio.DotNet.Web.Default.xproj", "{44777E72-CBEC-46DB-999F-DFBCEE944C57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{DF7A7024-E4E0-48F3-8B56-903FF5931F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF7A7024-E4E0-48F3-8B56-903FF5931F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF7A7024-E4E0-48F3-8B56-903FF5931F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44777E72-CBEC-46DB-999F-DFBCEE944C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44777E72-CBEC-46DB-999F-DFBCEE944C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44777E72-CBEC-46DB-999F-DFBCEE944C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44777E72-CBEC-46DB-999F-DFBCEE944C57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,5 +134,6 @@ Global
 		{28BE77ED-6F5D-479D-B996-8B2FBC115036} = {6F6382AB-CB1C-4031-ADD1-366361C4FBF0}
 		{F41FBAF1-6D2A-4E29-839F-25B83FE19D6C} = {0CE2F8DD-91DE-4D10-8644-3CC7AEF54772}
 		{DF7A7024-E4E0-48F3-8B56-903FF5931F36} = {0CE2F8DD-91DE-4D10-8644-3CC7AEF54772}
+		{44777E72-CBEC-46DB-999F-DFBCEE944C57} = {6A8E3EB8-5079-43BB-8E39-B0404A04A09C}
 	EndGlobalSection
 EndGlobal
