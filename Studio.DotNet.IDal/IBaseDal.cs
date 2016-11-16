@@ -10,7 +10,7 @@ namespace Studio.DotNet.IDal
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <remarks>Sinx 2016-08-31</remarks>
-    public interface IBaseDal<T>
+    public interface IBaseDal<T> where T : class
     {
 	    /// <summary>
 	    /// 获取指定条件下的实体集合

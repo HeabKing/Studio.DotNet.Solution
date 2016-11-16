@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Studio.DotNet.Bll
 {
-    public class BaseBll<T> : IBll.IBaseBll<T>
+    public class BaseBll<T> : IBll.IBaseBll<T> where T : class
     {
 	    private readonly IDal.IBaseDal<T> _dal;
 
