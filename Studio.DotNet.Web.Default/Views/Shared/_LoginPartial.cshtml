@@ -6,6 +6,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+	ViewData["LoginPartial"] = DateTime.Now;
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
