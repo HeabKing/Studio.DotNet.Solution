@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Studio.DotNet.API
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-				//.UseUrls("http://*:6688")
+				.UseUrls("http://+:6688")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
