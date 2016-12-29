@@ -1,0 +1,3 @@
+[submodule "Sinx.Infrastructure"]
+	path = Sinx.Infrastructure
+	url = git://github.com/SinxHe/Sinx.Infrastructure.git
