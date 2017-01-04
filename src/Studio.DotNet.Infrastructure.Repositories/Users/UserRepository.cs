@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Studio.DotNet.Model.Users;
 
 namespace Studio.DotNet.Infrastructure.Repositories.Users
 {
